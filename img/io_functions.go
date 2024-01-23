@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"image"
 	_ "image/jpeg"
+	"image/png"
 	"log"
 	"os"
 )
@@ -17,6 +18,16 @@ func LoadImage(imagePath string) image.Image {
 	checkErr(err, "failed to decode image:")
 
 	return i
+}
+
+func SaveImage(img **image.RGBA, name string) {
+	f, err := os.Create("output/" + name)
+	checkErr(err, "failed to create file: ")
+	defer f.Close()
+
+	checkErr(err, "failed to encode file: ")
+
+	err = png.Encode(f, *img)
 }
 
 func checkErr(err error, msg string) {
