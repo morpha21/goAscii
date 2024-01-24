@@ -10,7 +10,7 @@ func main() {
 	fmt.Println("loading image...")
 	fig := img.LoadImage(os.Args[1])
 
-	processed_fig := img.OrderedDithering(&fig)
+	processed_fig := img.Shrink(&fig, 140)
 
 	img.SaveImage(&processed_fig, "output.png")
 

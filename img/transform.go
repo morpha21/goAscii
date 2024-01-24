@@ -34,7 +34,7 @@ func OrderedDithering(img *image.Image) *image.RGBA {
 		for x := 0; x < x_max; x += len(threshold_map) {
 			for i := 0; i < len(threshold_map) && x+i < x_max; i++ {
 				for j := 0; j < len(threshold_map) && y+j < y_max; j++ {
-					if grayscalePixel(ordered.At(x+i, y+j)) <= float32(threshold_map[i][j]) {
+					if grayscalePixel(ordered.At(x+i, y+j)) <= int(threshold_map[i][j]) {
 						ordered.Set(x+i, y+j, color.RGBA{28, 28, 2, 255})
 						// continue
 					} else {
