@@ -5,7 +5,6 @@ import (
 	"image/color"
 )
 
-// //////////////////////////////////////////////////////////// creates a copy of the image, and returns the copy and its dimensions
 func copyImage(img image.Image) (*image.RGBA, int, int) {
 	copy := image.NewRGBA(img.Bounds())
 	x_max := copy.Bounds().Max.X
@@ -19,11 +18,11 @@ func copyImage(img image.Image) (*image.RGBA, int, int) {
 	return copy, x_max, y_max
 }
 
-func grayscalePixel(c color.Color) float32 {
+func grayscalePixel(c color.Color) int {
 	pixel_color := color.RGBAModel.Convert(c).(color.RGBA)
 	r, g, b := pixel_color.R, pixel_color.G, pixel_color.B
 
-	return ((float32(r) + float32(g) + float32(b)) / 3)
+	return int(0.299*float32(r) + 0.587*float32(g) + 0.114*float32(b))
 }
 
 func imageToMatrix(img *image.Image) [][][3]uint8 {
